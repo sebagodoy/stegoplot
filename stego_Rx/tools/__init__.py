@@ -1,0 +1,1 @@
+from stego.tools.InertiaMoment import InertiaMoment
