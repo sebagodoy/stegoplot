@@ -15,9 +15,14 @@ While testing, is recomended to install stego in a separate virtual environment,
 interfere with anything else. Following [this](https://packaging.python.org/en/latest/tutorials/packaging-projects/) and 
 [this](https://packaging.python.org/en/latest/tutorials/installing-packages/#creating-and-using-virtual-environments) guides, and working in the `<DIR>` directory:
 ```
+# virtual environment
 python3 -m venv <DIR>
 source <DIR>/bin/activate
-python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps example-package-YOUR-USERNAME-HERE
+
+# install stego and other packages
+python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stegoplot
+pip install numpy
+pip install matplotlib
 ```
 now you can check the test examples included above (test folder) as  python scripts and jupyter noteboks.
 
@@ -27,12 +32,12 @@ I like dinosaurs :sauropod:.
 #### Basic example 
 Loading and adding a molecule
 ```
-import stegoplot as stg
-H2O = stg.items.Gas(Name='H2O',
-                    G_ID='ads', E0=-14.14745554,
-                    F_ID='McQuarrie', FreqR=[3833.413608, 3721.047191, 1597.447164],
-                    Geometry='Poliatomic', Mass=18.00,
-                    RotT=[40.1, 20.9, 13.4], RotSymNum=2)
+import stegoplot.item_types as stg
+H2O = stg.Gas(Name='H2O',
+              G_ID='ads', E0=-14.14745554,
+              F_ID='McQuarrie', FreqR=[3833.413608, 3721.047191, 1597.447164],
+              Geometry='Poliatomic', Mass=18.00,
+              RotT=[40.1, 20.9, 13.4], RotSymNum=2)
 ```
 Computing some properties
 ```
