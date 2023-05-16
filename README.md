@@ -22,7 +22,7 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps examp
 now you can check the test examples included above (test folder) as  python scripts and jupyter noteboks.
 
 #### Why "stego"?
-I like dinosaurs.
+I like dinosaurs :sauropod:.
 
 #### Basic example 
 Loading and adding a molecule
