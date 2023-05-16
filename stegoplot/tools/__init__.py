@@ -1,0 +1,1 @@
+from stegoplot.tools.InertiaMoment import InertiaMoment

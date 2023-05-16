@@ -1,11 +1,11 @@
 # Packages
 
 import matplotlib.pyplot as plt
-import stego.item_types
+import stegoplot.item_types
 from .promps import CodeStatus, fStringLength, fNum
 from .parameters import eV2J, eV2kJpmol
 
-import stego.parameters
+import stegoplot.parameters
 
 print('>> Loading Plot tools', end='...')
 
@@ -199,12 +199,12 @@ def AddHoverNote(iHoverList : 'list, hover notes container',
 def ActivateHover(iHoverList: list = None,
                   Figure: "figure handler" = False):
     # Prepare containers
-    # if no container list of notes is given uses default in stego.parameters
+    # if no container list of notes is given uses default in stegoplot.parameters
     # if no figure is specified, takes current figure
     if not Figure:
         Figure = plt.gcf()
     if iHoverList == None:
-        iHoverList = stego.parameters.def_HoverNoteBin
+        iHoverList = stegoplot.parameters.def_HoverNoteBin
     # define event
     def hover(event):
         cont = False
@@ -276,28 +276,28 @@ def RxStepTS(En, Ref=0.,
                 elif isinstance(iEE, tuple) and len(iEE) == 2:
                     # SubCase: Element is tuple (X, SingleItem), treated as SingleItem with multiplier X
                     tempE += iEE[0] * iEE[1].GetThermo(
-                        ThermoType=kwargs.get('ThermoType', stego.parameters.def_PlotType),
+                        ThermoType=kwargs.get('ThermoType', stegoplot.parameters.def_PlotType),
                         T=kwargs.get('T', None),
                         P=kwargs.get('P', None),
                         Report=True)
                 else:
                     # SubCase: Element is of the  SingleItem class derivatives (GasItem, ...)
                     tempE += iEE.GetThermo(
-                        ThermoType=kwargs.get('ThermoType', stego.parameters.def_PlotType),
+                        ThermoType=kwargs.get('ThermoType', stegoplot.parameters.def_PlotType),
                         T=kwargs.get('T', None),
                         P=kwargs.get('P', None),
                         Report=False)
             En[iE] = tempE
         elif isinstance(EE, tuple) and len(EE) == 2:
             # Case: Element is ( X, SingleItem class), treated as Single Item with multiplier X.
-            En[iE] = EE[0] * EE[1].GetThermo(ThermoType=kwargs.get('ThermoType', stego.parameters.def_PlotType),
+            En[iE] = EE[0] * EE[1].GetThermo(ThermoType=kwargs.get('ThermoType', stegoplot.parameters.def_PlotType),
                                              T=kwargs.get('T', None),
                                              P=kwargs.get('P', None),
                                              Report=False)
         else:
             # Case: Element is of the  SingleItem class derivatives (GasItem, ...)
             # with built in functions
-            En[iE] = EE.GetThermo(ThermoType=kwargs.get('ThermoType', stego.parameters.def_PlotType),
+            En[iE] = EE.GetThermo(ThermoType=kwargs.get('ThermoType', stegoplot.parameters.def_PlotType),
                                   T=kwargs.get('T', None),
                                   P=kwargs.get('P', None),
                                   Report=True)
@@ -371,9 +371,9 @@ def RxStepTS(En, Ref=0.,
     #### Hover Note Option
     if Hover:
         # Add note to collection given (list)
-        # or default list (stego.parameters.def_HoverNoteBin)
+        # or default list (stegoplot.parameters.def_HoverNoteBin)
         if not isinstance(Hover, list):
-            Hover = stego.parameters.def_HoverNoteBin
+            Hover = stegoplot.parameters.def_HoverNoteBin
 
         # ---- Ending Note
         xy_point_position = [Pos[-1], En[-1] - ERef]

@@ -1,5 +1,5 @@
-from stego.tools import InertiaMoment as imo
-from stego.promps import fNum
+from stegoplot.tools import InertiaMoment as imo
+from stegoplot.promps import fNum
 
 #### ---- Case 1
 print('-'*80+'\n'+ 'Case 1' +'\n'+'-'*80)

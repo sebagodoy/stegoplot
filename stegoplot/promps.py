@@ -25,7 +25,7 @@ def type_not_found(item: 'Object', function:'function name') -> "Report err":
 	print(' You are trying to compute ' + str(function)+' for the object ')
 	print(str(item))
 	print('which type is not defined. Please add the necessary type and computation'
-		  'method in the corresponding section of the stego.items file')
+		  'method in the corresponding section of the stegoplot.items file')
 	quit()
 
 

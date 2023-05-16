@@ -1,6 +1,6 @@
 # Database for the
 
-import stego.item_types as Model
+import stegoplot.item_types as Model
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Molecular information from RPBE-DFT and reference (McQuarrie & Simon)

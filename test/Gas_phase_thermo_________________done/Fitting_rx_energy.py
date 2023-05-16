@@ -5,8 +5,8 @@
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
-from stego.parameters import eV2kJpmol
-from stego.kinetics import shomate_Hf, shomate_Gf
+from stegoplot.parameters import eV2kJpmol
+from stegoplot.kinetics import shomate_Hf, shomate_Gf
 from Databin import * # Molecular objects and parameters (in different file for better organization)
 
 ####################################################################################################################

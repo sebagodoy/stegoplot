@@ -1,6 +1,6 @@
 # This defines type to store computation results is defined
-import stego.promps
-import stego.parameters
+import stegoplot.promps
+import stegoplot.parameters
 
 class SingleItem:
 	def __init__(self, **kwargs):
@@ -70,7 +70,7 @@ class SingleItem:
 		pass
 	def q_total(self, Report=False, **kwargs):
 		out = self.q_tras(**kwargs) * self.q_rot(**kwargs) * self.q_vib(**kwargs) * self.q_el(**kwargs)
-		stego.promps.report(Report, 'q(total)', out, self)
+		stegoplot.promps.report(Report, 'q(total)', out, self)
 		return out
 
 	#### ---------------- Base for Thermo Energy contributions
@@ -113,7 +113,7 @@ class SingleItem:
 	def E0ZPVE(self, Report=False, **_unused):
 		# E0 + ZPVE
 		out = self.E0 + self.ZPVE()
-		stego.promps.report(Report, 'E0-ZPVE', out, self)
+		stegoplot.promps.report(Report, 'E0-ZPVE', out, self)
 		return out
 
 	def Entropy(self, **kwargs):
@@ -127,14 +127,14 @@ class SingleItem:
 		outS = self.Entropy(T=T, P=P)
 		out = outH - T * outS
 		if Report:
-			stego.promps.report(True, 'Gibbs', out, self)
+			stegoplot.promps.report(True, 'Gibbs', out, self)
 			if Report == 'Detailed':
 				print(f"    >>>>  G/eV="+str(out))
 				print(f"    >>>>  H/eV="+str(outH))
 				print(f"    >>>>  S/(eV/K)="+str(outS))
 		return out
 
-	def GetThermo(self, ThermoType=stego.parameters.def_PlotType,
+	def GetThermo(self, ThermoType=stegoplot.parameters.def_PlotType,
 				  T=None, P=None, Report=True, **_unused) -> float:
 		# Calls for E0 or thermo functions with strings 'E0', 'Internal', ... , 'Gibbs'
 		# ThermoType has to be defined here or in the child classes from SingleItem
@@ -145,7 +145,7 @@ class SingleItem:
 				fun	= getattr(self, ThermoType)
 				out = fun(T=T, P=P, Report=False, **_unused)
 
-			stego.promps.report(Report,ThermoType,out,self)
+			stegoplot.promps.report(Report,ThermoType,out,self)
 			if Report:
 				print('T = '+str(T) + ' , P = '+str(P))
 

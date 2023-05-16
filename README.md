@@ -1,4 +1,4 @@
-# Stego, a DFT analysis tool
+# Stego(reaction) plot, a DFT analysis tool
 
 A python package that helps with organizing and analyzing DFT results, computing thermodynamic properties, 
 analyzing DOS and more things to come.
@@ -8,10 +8,19 @@ analyzing DOS and more things to come.
 * Python 3.6 or later
 * NumPy
 
+#### Installation
+While testing, is recomended to install stego in a separate virtual environment, so it does not
+interfere with anything else. Following [this](https://packaging.python.org/en/latest/tutorials/packaging-projects/) and 
+[this](https://packaging.python.org/en/latest/tutorials/installing-packages/#creating-and-using-virtual-environments) guides, and working in the `<DIR>` directory:
+```
+python3 -m venv <DIR>
+source <DIR>/bin/activate
+python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps example-package-YOUR-USERNAME-HERE
+```
 #### Basic example 
 Loading and adding a molecule
 ```
-import stego as stg
+import stegoplot as stg
 H2O = stg.items.Gas(Name='H2O',
                     G_ID='ads', E0=-14.14745554,
                     F_ID='McQuarrie', FreqR=[3833.413608, 3721.047191, 1597.447164],

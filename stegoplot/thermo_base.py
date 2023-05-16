@@ -1,6 +1,6 @@
 # Packages
 
-from stego.parameters import Nav, kb, hh, cc, eV2J
+from stegoplot.parameters import Nav, kb, hh, cc, eV2J
 from numpy import pi, exp, prod, log
 
 

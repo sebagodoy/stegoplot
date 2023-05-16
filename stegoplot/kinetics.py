@@ -2,7 +2,7 @@
 
 # dependencies
 from numpy import exp, log
-from stego.parameters import kb, hh, eV2J
+from stegoplot.parameters import kb, hh, eV2J
 
 
 def rate_cte(TS_E, initial_E, Temp):

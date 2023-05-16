@@ -10,8 +10,8 @@ def InertiaMoment(filedir: 'str, CONTCAR direction' = None,
                   subset: 'str, atom subset (e.g. 3,5,6-9,13), None for all atoms' = 'def_none')\
         -> "[(eual1, [evect1])]":
     import numpy as np
-    from stego.parameters import atom_mases
-    from stego.promps import CodeStatus as Report
+    from stegoplot.parameters import atom_mases
+    from stegoplot.promps import CodeStatus as Report
 
     # Custom functions
     def FixNum(iNum, **kwargs):
