@@ -7,6 +7,8 @@ analyzing DOS and more things to come.
 #### Requirements
 * Python 3.6 or later
 * NumPy
+* matplotlib
+* scipy (optional, for curvy reaction profiles)
 
 #### Installation
 While testing, is recomended to install stego in a separate virtual environment, so it does not
@@ -17,6 +19,11 @@ python3 -m venv <DIR>
 source <DIR>/bin/activate
 python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps example-package-YOUR-USERNAME-HERE
 ```
+now you can check the test examples included above (test folder) as  python scripts and jupyter noteboks.
+
+#### Why "stego"?
+I like dinosaurs.
+
 #### Basic example 
 Loading and adding a molecule
 ```
@@ -38,7 +45,7 @@ H2O.Gibbs(T=298.15, P=1)      # Gibbs free energy
 ```
 Loading a VASP-DOS file
 ```
-import stego.dedos as ds
+import stegoplot.dedos as ds
 
 N100 = ds.DOS("./DOSCAR_direction", Name="Ni(111), polarized, spd partition, no ml partition, 64 atoms, 656 electrons", 
               Pol=True, Orb="spd", ml=False, Nelect=656)
