@@ -24,7 +24,7 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stego
 pip install numpy
 pip install matplotlib
 ```
-now you can check the test examples included above (test folder) as  python scripts and jupyter noteboks.
+now you can check the test examples included above (test folder) as python scripts from and jupyter noteboks.
 
 #### Why "stego"?
 I like dinosaurs :sauropod:.
@@ -52,7 +52,7 @@ Loading a VASP-DOS file
 ```
 import stegoplot.dedos as ds
 
-N100 = ds.DOS("./DOSCAR_direction", Name="Ni(111), polarized, spd partition, no ml partition, 64 atoms, 656 electrons", 
+N100 = ds.DOS("./DOSCAR_direction", Name="Ni(111), polarized, spd partition, no ml partition, 64 atoms and 656 electrons", 
               Pol=True, Orb="spd", ml=False, Nelect=656)
 ```
 Ploting DOS
