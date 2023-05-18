@@ -1,3 +1,9 @@
+
+![made](https://img.shields.io/badge/python-3.8-green?logo=python&logoColor=green&style=flat)
+![license](https://img.shields.io/github/license/sebagodoy/stegoplot)
+![repo size](https://img.shields.io/github/repo-size/sebagodoy/stegoplot)
+![jup example](https://img.shields.io/github/directory-file-count/sebagodoy/stegoplot/test?extension=ipynb&label=jupyter%20examples&type=file)
+
 # Stego(reaction) plot, a DFT analysis tool
 
 A python package that helps with organizing and analyzing DFT results, computing thermodynamic properties, 
@@ -10,26 +16,46 @@ analyzing DOS and more things to come.
 * matplotlib
 * scipy (optional, for curvy reaction profiles)
 
-#### Installation
-While testing, is recomended to install stego in a separate virtual environment, so it does not
-interfere with anything else. Following [this](https://packaging.python.org/en/latest/tutorials/packaging-projects/) and 
-[this](https://packaging.python.org/en/latest/tutorials/installing-packages/#creating-and-using-virtual-environments) guides, and working in the `<DIR>` directory:
+### Installation
+Install the Numpy and matplotlib if yu dont have these already. Install the distribution uploaded to TestPy with 
 ```
-# virtual environment
-python3 -m venv <DIR>
-source <DIR>/bin/activate
+python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stegoplot
+```
+While testing, is recomended to install stego in a separate virtual environment, so it does not
+interfere with anything else. Following [this](https://packaging.python.org/en/latest/tutorials/packaging-projects/), 
+[this](https://packaging.python.org/en/latest/tutorials/installing-packages/#creating-and-using-virtual-environments) and [this]() guides (in Ubuntu 20.04 with python3 and pip):
+```
+# select a location, open a terminal there, 
+#create a folder for the virtual environment and move in
+mkdir sandbox
+cd sandbox 
+
+# create virtual environment
+python3 -m venv ./
+source ./bin/activate
 
 # install stego and other packages
 python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stegoplot
 pip install numpy
 pip install matplotlib
 ```
-now you can check the test examples included above (test folder) as python scripts from and jupyter noteboks.
+While in this virtual environment python3 has now stegoplot, numpy and matplotlib. give it a 
+test entering with `python3` and checking the value of the Boltzmann constant ( in m2 kg / s2 K) 
+with `import stegoplot.parameters as stg; stg.kb`.
+To use jupyter notebooks with this virtual environment you need to create and add a new kernel using:
+```
+# create and add kernel for jupyter notebooks
+pip install ipykernel
+python -m ipykernel install --user --name=sandbox
+
+```
+now you can call `jupyter notebook` from any terminal and select the `kernel > sandbox` to use
+stego and check the test examples included in the test folder.
 
 #### Why "stego"?
 I like dinosaurs :sauropod:.
 
-#### Basic example 
+### Basic examples 
 Loading and adding a molecule
 ```
 import stegoplot.item_types as stg
