@@ -2,6 +2,7 @@
 ![made](https://img.shields.io/badge/python-3.8-green?logo=python&logoColor=green&style=flat)
 ![license](https://img.shields.io/github/license/sebagodoy/stegoplot)
 ![repo size](https://img.shields.io/github/repo-size/sebagodoy/stegoplot)
+![last commit](https://img.shields.io/github/last-commit/sebagodoy/stegoplot)
 ![jup example](https://img.shields.io/github/directory-file-count/sebagodoy/stegoplot/test?extension=ipynb&label=jupyter%20examples&type=file)
 
 # Stego(reaction) plot, a DFT analysis tool
