@@ -17,11 +17,12 @@ analyzing DOS and more things to come.
 * matplotlib
 * scipy (optional, for curvy reaction profiles)
 
-### Installation
+## Installation
 Install the Numpy and matplotlib if you dont have these already. Install the distribution uploaded to TestPy with 
 ```
 python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stegoplot
 ```
+#### Installation in virtual environment
 While testing, is recomended to install stego in a separate virtual environment, so it does not
 interfere with anything else. Following [this](https://packaging.python.org/en/latest/tutorials/packaging-projects/), 
 [this](https://packaging.python.org/en/latest/tutorials/installing-packages/#creating-and-using-virtual-environments) and [this]() guides (in Ubuntu 20.04 with python3 and pip):
@@ -53,10 +54,7 @@ python -m ipykernel install --user --name=sandbox
 now you can call `jupyter notebook` from any terminal and select the `kernel > sandbox` to use
 stego and check the test examples included in the test folder.
 
-#### Why "stego"?
-I like dinosaurs :t-rex: :sauropod:.
-
-### Basic examples 
+## Basic examples 
 Loading and adding a molecule
 ```
 import stegoplot.item_types as stg
@@ -103,3 +101,5 @@ N100.Plot(("d30-35", "d+"), AmplifyFactor=5, Color='g')
 N100.Plot(("d30-35", "d-"), PlotDown=True, AmplifyFactor=5, Color='g')
 
 ```
+#### FAQ: Why "stego"?
+I like dinosaurs :t-rex: :sauropod:.
