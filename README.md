@@ -17,7 +17,7 @@ analyzing DOS and more things to come.
 * scipy (optional, for curvy reaction profiles)
 
 ### Installation
-Install the Numpy and matplotlib if yu dont have these already. Install the distribution uploaded to TestPy with 
+Install the Numpy and matplotlib if you dont have these already. Install the distribution uploaded to TestPy with 
 ```
 python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stegoplot
 ```
@@ -26,7 +26,7 @@ interfere with anything else. Following [this](https://packaging.python.org/en/l
 [this](https://packaging.python.org/en/latest/tutorials/installing-packages/#creating-and-using-virtual-environments) and [this]() guides (in Ubuntu 20.04 with python3 and pip):
 ```
 # select a location, open a terminal there, 
-#create a folder for the virtual environment and move in
+# create a folder for the virtual environment and move in
 mkdir sandbox
 cd sandbox 
 
@@ -39,9 +39,9 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stego
 pip install numpy
 pip install matplotlib
 ```
-While in this virtual environment python3 has now stegoplot, numpy and matplotlib. give it a 
-test entering with `python3` and checking the value of the Boltzmann constant ( in m2 kg / s2 K) 
-with `import stegoplot.parameters as stg; stg.kb`.
+While in this virtual environment, python3 can import stegoplot, numpy and matplotlib, give it a 
+test entering with `python3` and checking the value of the Boltzmann constant (in m2 kg / s2 K) 
+with `import stegoplot.parameters as stg; stg.kb` (spoiler: 1.3806488e-23).
 To use jupyter notebooks with this virtual environment you need to create and add a new kernel using:
 ```
 # create and add kernel for jupyter notebooks
@@ -53,7 +53,7 @@ now you can call `jupyter notebook` from any terminal and select the `kernel > s
 stego and check the test examples included in the test folder.
 
 #### Why "stego"?
-I like dinosaurs :sauropod:.
+I like dinosaurs :t-rex: :sauropod:.
 
 ### Basic examples 
 Loading and adding a molecule
