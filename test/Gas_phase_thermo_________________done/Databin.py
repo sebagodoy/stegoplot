@@ -9,8 +9,6 @@ import stegoplot.item_types as Model
 CH4_g = Model.GasItem(Name='CH4', E0=-24.03491563, dipolE0=0.,
                   Acc='Full', TS=False, G_ID='CH4.gas_Local_UltraHighRes_Box15',
                   F_ID='freqs from McQuarrie & Simon',
-                  # FreqR=[2898.29495187837, 1515.1757782002, 1515.1757782002, 3002.55016597471, 3002.55016597471,
-                  #        3002.55016597471, 1299.71500240109, 1299.71500240109, 1299.71500240109],
                   FreqR=[3088.351691, 3086.406086, 3080.600334, 2967.887746, 1519.931601, 1516.585642,
                          1296.27073, 1295.587467, 1291.591103],
                   Geometry='Poliatomic', Mass=16.04,

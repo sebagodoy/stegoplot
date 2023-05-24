@@ -5,11 +5,11 @@ from numpy import pi, exp, prod, log
 
 
 ########################################################################################################################
-# Basic thermodynamic partitions
+# Partition functions
 
-def qTras(inM: 'Mass,       [AMU=g/mol]',
-          inT: 'Temperature, [K]',
-          inP: 'Pressure,   [bar]'):
+def qTras(inM: 'float, Mass, [AMU=g/mol]',
+          inT: 'float, Temperature, [K]',
+          inP: 'float, Pressure, [bar]') -> 'float, part.fun. adim.':
     inP = inP * 100000  # bar -> Pa
     inM = inM / (Nav * 1000)  # g/mol -> kG/particle
     frac1 = 2 * pi * inM * kb * inT / (hh ** 2.)
@@ -17,10 +17,10 @@ def qTras(inM: 'Mass,       [AMU=g/mol]',
     return frac2 * (frac1 ** (3. / 2.))  # /[Adim]
 
 
-def qRot(Geom: 'Geometry, str',
+def qRot(Geom: 'str, Geometry',
          RotT: 'Rot. temp., float or float-list in [K]',
-         Tin: 'Temp., float [K]',
-         SymmNum: 'Rot. symmetry number'):
+         Tin: 'float, Temp., [K]',
+         SymmNum: 'int, Rot. symmetry number') -> 'float, part.fun. adim.':
     # Rotational partition function [Adim.]
     # Geometry = 'Diatomic homonuclear', 'Diatomic Heteronuclear' or 'Poliatomic'
     # RotT	=	Rotational temperature or list if poliatomic /[K]
@@ -39,8 +39,8 @@ def qRot(Geom: 'Geometry, str',
         raise NameError('Geometry not recognized')
 
 
-def qVib(FreqIn: 'Real freqs, list, cm-1',
-         Tin: 'Temp., [K]'):
+def qVib(FreqIn: 'list, Real frequencies, [cm-1]',
+         Tin: 'float, Temperature, [K]') -> 'float, part.fun. adim.':
     qV = 1
     for iF in FreqIn:
         vibTemp = hh * cc * iF * 100. / kb  # /[Adim.]
@@ -50,7 +50,7 @@ def qVib(FreqIn: 'Real freqs, list, cm-1',
     return qV  # /[Adim.]
 
 
-def qEl():
+def qEl() -> 'float, part.fun. adim.':
     # Electronic partition function [Adim.]
     # Assumes excited states in such high energy that are inaccessible
     # and spin multiplicity of ground state = 1
@@ -61,13 +61,13 @@ def qEl():
 # Energetic contributions by partition
 # default output in eV
 
-def Etras(inT):
+def Etras(inT: 'float, temp [K]') -> 'float, energy [eV]':
     # Translational energy [eV]
     # inT = Temperature		/[K]
     return (3. / 2.) * (kb * inT / eV2J)  # /(eV)
 
 
-def ZPVE(FreqIn: list):
+def ZPVE(FreqIn: 'list, real freqs, [cm-1]') -> 'float, energy [eV]':
     # Zero Point Vibrational Energy, ZPVE [eV]
     # FreqIn = [real freqs list]	/[cm-1]
     sZPVE = 0.
@@ -76,7 +76,8 @@ def ZPVE(FreqIn: list):
     return sZPVE  # /(eV)
 
 
-def Evib(FreqIn: list, Tin: float):
+def Evib(FreqIn: 'list, real freqs., [cm-1]',
+         Tin: 'float, temp. [K]') -> 'float, energy [eV]':
     # Vibrational energy [eV]
     # FreqIn = [real freqs list]	/[cm-1]
     # Tin = Temperature				/[K]
@@ -87,7 +88,8 @@ def Evib(FreqIn: list, Tin: float):
     return Ev * (kb / eV2J)  # /[eV]
 
 
-def Erot(Geometry: str, T: float):
+def Erot(Geometry: 'str, molecular geometry',
+         T: 'float, temp. [K]') -> 'float, energy [eV]':
     # Rotational energy [eV]
     # Geometry =	'Diatomic homonuclear'
     #               'Diatomic Heteronuclear'
@@ -106,7 +108,9 @@ def Erot(Geometry: str, T: float):
 # Entropic contributions by partition
 # default output in eV/K
 
-def Stras(iinM, iinT, iinP):
+def Stras(iinM: "float, molec. mass [g/mol]",
+          iinT: "float, temp [K]",
+          iinP: "float, pressure, [bar]") -> 'float, entropy, [eV/K]':
     # Translational entropy [eV/K]
     # inM = Masa			/[AMU = g/mol]
     # inT = Temperature		/[K]
@@ -115,10 +119,13 @@ def Stras(iinM, iinT, iinP):
     return kb * (log(qT) + 5. / 2.) / eV2J  # /[eV/K]
 
 
-def Srot(Geom, RotT, Tin, SymmNum):
+def Srot(Geom: "str, molec geometru",
+         RotT: "float 4 diatomic, [3xfloat] polyatomic, rot. temp [K]",
+         Tin: "float, temp. [K]",
+         SymmNum: "int, Rot. symmetry number") -> 'float, entropy, [eV/K]':
     # Rotational entropy [eV/K]
     # Geom	=	'Diatomic homonuclear', 'Diatomic Heteronuclear' or 'Poliatomic'
-    # RotT	=	Rotational temperature / K, 1 for diatomics 3 for everything else.
+    # RotT	=	Rotational temperature / K, 1float for diatomics list[3] for everything else.
     # Tin	=	Temperature / K
     # SymmNum =	Rotational symmetry number (1 for HCl, 2 for H2, 3 for NH3, 12 for CH4)
     # print("Rot Sym number = " + str(SymmNum))
@@ -129,7 +136,8 @@ def Srot(Geom, RotT, Tin, SymmNum):
         return kb * (log(qR) + 3. / 2.) / eV2J  # /[eV/K]
 
 
-def Svib(FreqIn, Tin):
+def Svib(FreqIn: "list[floats], real freqs. [cm-1]",
+         Tin: "float, temp. [K]") -> 'float, entropy, [eV/K]':
     # Vibrational entropy [eV/K]
     # FreqIn = [Real fres list]	/[cm-1]
     # Tin = Temperature			/[K]
@@ -141,3 +149,7 @@ def Svib(FreqIn, Tin):
         lo = log(1. - exp(-rotTonT))  # /[Adim.]
         Sv += kb * (frac - lo) / eV2J  # /[eV/K]
     return Sv  # /[eV/K]
+
+
+def Sel() -> 'float, entropy, [eV/K]':
+    return 0.

@@ -28,9 +28,9 @@ def TIE(E_light_TS, E_light_i, E_heavy_TS, E_heavy_i, temp):
     return KIE(E_light_TS, E_light_i, E_heavy_TS, E_heavy_i, temp)
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Shomate equation
+# Shomate equations
 
-def shomate_Hf(ml, Tin):
+def shomate_Hf(ml: 'dict, shomate parameters', Tin: 'float, T[K]') -> 'float, energy[kJ/mol]':
     # returns enthalpy according to the Shomate Equation in the NIST format
     # ml: dic,  list of Shomate parameters ('A', ... ) and formation energy 'H0f'
     #           {'A':1.2345, 'b':1.234, ..., 'H0f':1.2345}
@@ -45,7 +45,7 @@ def shomate_Hf(ml, Tin):
 		   ml['H'] + \
 		   ml['H0f'] #kJ/mol
 
-def shomate_Sf(ml, Tin):
+def shomate_Sf(ml: 'dict, shomate parameters', Tin: 'float, T[K]') -> 'float, entropy[kJ/mol K]':
     # returns entropy according to the Shomate Equation in the NIST format
     # ml: dic,  list of Shomate parameters ('A', ... ) and formation energy 'H0f'
     #           {'A':1.2345, 'b':1.234, ..., 'H0f':1.2345}
@@ -60,7 +60,7 @@ def shomate_Sf(ml, Tin):
     return ss/1000 #kJ/K mol
 
 
-def shomate_Gf(ml, Tin):
+def shomate_Gf(ml: 'dict, shomate parameters', Tin: 'float, T[K]') -> 'float, Gibbs free energy [kJ/mol]':
     # returns free energy according to the Shomate Equation in the NIST format
     # ml: dic,  list of Shomate parameters ('A', ... ) and formation energy 'H0f'
     #           {'A':1.2345, 'b':1.234, ..., 'H0f':1.2345}
