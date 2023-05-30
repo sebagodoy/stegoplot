@@ -41,6 +41,9 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps stego
 pip install numpy
 pip install matplotlib
 ```
+or use `pip3` is needed for you will be using `python3`. If you want to plot smooth reaction profiles be sure to also install the `scipy` package 
+with `pip3 install scipy`.
+
 While in this virtual environment, python3 can import stegoplot, numpy and matplotlib, give it a 
 test entering with `python3` and checking the value of the Boltzmann constant (in m2 kg / s2 K) 
 with `import stegoplot.parameters as stg; stg.kb` (spoiler: 1.3806488e-23).
