@@ -58,6 +58,7 @@ now you can call `jupyter notebook` from any terminal and select the `kernel > s
 stego and check the test examples included in the test folder.
 
 ## Basic examples 
+#### 1. Properties for some species
 Loading and adding a molecule
 ```
 import stegoplot.item_types as stg
@@ -76,6 +77,65 @@ H2O.Enthalpy(T=298.15, P=1)   # enthalpy
 H2O.Entrop(T=298.15, P=1)     # entropy
 H2O.Gibbs(T=298.15, P=1)      # Gibbs free energy
 ```
+#### 2. Basic plot
+Let's plot CO(g) + * -> *CO, *CO + * -> *C + *O. Start by adding the species
+```
+# load species
+import stegoplot.item_types as Model
+
+# CO in empty cubic box: CO(g)
+COg = Model.GasItem(Name="CO(g)", 
+                    E0=-14.42576166, # DFT energy, eV
+                    FreqR=[2104.300781], # Real frequencies, cm-1
+                    Geometry='Diatomic heteronuclear', 
+                    Mass=28.01, # Atomic mass, g/mol
+                    RotT=2.77, # Rotational temperature, K
+                    RotSymNum=1 # Rotational symmetry number = 1 (diatomic heteronuclear)
+                   )
+# Clean Ni(100) surface
+N100 = Model.CleanSurf(Name='Ni100', E0=-291.86035891)
+
+# Adsorbed CO/Ni(100)
+N100_CO = Model.AdsItem(Name='N10/R17i CO.h', E0=-307.82811536,
+                        FreqR=[1597.286883, 238.05862, 229.727279, 199.589309, 147.878114, 117.974835])
+# Transition state CO -> C + O /Ni(100)
+N100_CO_TS = Model.AdsItem(Name='N10/R17d CO.h -> C.h + O.h', E0=-305.94631980, 
+                           FreqR=[593.036612, 551.302284, 450.144514, 344.84786, 250.855827], 
+                           FreqI=[367.384136] # Imaginary frequency, cm-1 (not used, may be omited)
+                          )
+# Co-Adsorbed C+O/Ni(100) 
+N100_C_O = Model.AdsItem(Name='N10/R17f C.h + O.h', E0=-307.69629330, 
+                         FreqR=[672.032831, 640.703844, 400.586463, 342.050762, 328.190997, 259.747561])
+```
+Create the plot and add the steps
+```
+# plot base
+import matplotlib.pyplot as plt
+import stegoplot.Plot as stgplt
+
+fig, axs = plt.subplots(1, 1, figsize=(8., 3.))
+MyRef = stgplt.RxRef(1.5, 0.)
+
+# Adding to plot
+stgplt.RxStepTS([ [N100,COg], N100_CO ], Ref=MyRef, ThermoType='Gibbs', T = 265 + 273.15, P=1.,
+    Name='CO adsorption', Hover=True, Color='r', AlphaLines=1.)
+stgplt.RxStepTS([ N100_CO, N100_CO_TS, N100_CO ], Ref=MyRef, ThermoType='Gibbs', T = 265 + 273.15, 
+    Name='CO disociation', Hover=True, Color='b', AlphaLines=1., PlotShape='Spline')
+```
+Remove `PlotShape='Spline'` if you don't have the `scipy` package.
+Add a couple things to get a nicer plot
+```
+# Make it nicer
+plt.ylabel("Gibbs free energy (kJ/mol)", fontweight='bold', fontsize='9')
+plt.tick_params(axis="y", direction="inout", length=12.)
+plt.axhline(y=0., color="k", alpha=.5, linewidth=.4)
+axs.set_xticks([i[0] for i in MyRef.log])
+axs.set_xticklabels(['CO + Ni(100)', 'C/Ni(100)', 'C+O/Ni(100)'])
+plt.grid(which='major', color='k', linestyle='dashed', linewidth=.5, alpha=.3)
+plt.show()
+```
+
+#### 3. Analysis of Density of States files (DOSCAR)
 Loading a VASP-DOS file
 ```
 import stegoplot.dedos as ds
