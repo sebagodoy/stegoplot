@@ -231,7 +231,8 @@ def ActivateHover(iHoverList: list = None,
 
 ################################################################################################################################
 #### Add step to plot
-def RxStepTS(En, Ref=0.,
+def RxStepTS(En,
+             Ref=0.,
              UpdateRef = True, Hover = False,
              PlotShape ='Stepped', StepSpan=1.,
              Name = 'No name given',
@@ -259,8 +260,8 @@ def RxStepTS(En, Ref=0.,
 
     # -----------------------------------------------------------------------------
     # ---- Pre-treating Energy input
-    # Energy input can be [ A , B ] or [A, B, C]; A,B,C float or SingleItem clases
-    # with built in energy functions
+    # Energy input can be [ A , B ] or [A, B, C];
+    # A,B,C float or SingleItem clases with built in energy functions
     for iE, EE in enumerate(En):
         if isinstance(EE, float) or isinstance(EE, int):
             # Case: Element already is number, kept it like that
@@ -279,7 +280,7 @@ def RxStepTS(En, Ref=0.,
                         ThermoType=kwargs.get('ThermoType', stegoplot.parameters.def_PlotType),
                         T=kwargs.get('T', None),
                         P=kwargs.get('P', None),
-                        Report=True)
+                        Report=False)
                 else:
                     # SubCase: Element is of the  SingleItem class derivatives (GasItem, ...)
                     tempE += iEE.GetThermo(
@@ -300,7 +301,7 @@ def RxStepTS(En, Ref=0.,
             En[iE] = EE.GetThermo(ThermoType=kwargs.get('ThermoType', stegoplot.parameters.def_PlotType),
                                   T=kwargs.get('T', None),
                                   P=kwargs.get('P', None),
-                                  Report=True)
+                                  Report=False)
 
     # ---------------------------------------------------------------------------
     # Scale input (eV) to kwargs.UnitsFactor, by default in eV->kJ/mol
@@ -308,7 +309,7 @@ def RxStepTS(En, Ref=0.,
         En[i] *= UnitsFactor
 
     # ---- Energy deltas
-    DE = En[1] - En[0]  # reaction energy
+    DE = En[-1] - En[0]  # reaction energy
     if len(En) == 3:
         Eaf = En[1] - En[0]  # activation forward
         Eab = En[1] - En[2]  # activation backwards
@@ -362,9 +363,11 @@ def RxStepTS(En, Ref=0.,
     CodeStatus(fStringLength('Adding reaction step to current plot', Side='r', l=90, Filling='.'),
                end=' ' + Name + '\n')
     if len(En) == 3:
-        CodeStatus('Ea(f)=' + fNum(Eaf, '2f') + ' ; Ea(b)=' + fNum(Eab, '2f') + ' ; Delta E = ' + fNum(DE, '2f'),l=8)
+        CodeStatus('Ea(f) = ' + fNum(Eaf, '2f', '+.') + \
+                   ' ; Ea(b) = ' + fNum(Eab, '2f' ,'+.') + \
+                   ' ; Delta E = ' + fNum(DE, '2f', '+.'),l=8)
     elif len(En) == 2:
-        CodeStatus('Delta E = ' + fNum(DE, '2f'), l=8)
+        CodeStatus('Delta E = ' + fNum(DE, '2f', '+.'), l=8)
 
 
     #### ---------------------------------------------------------------------------------------------------------------
@@ -390,8 +393,8 @@ def RxStepTS(En, Ref=0.,
             xy_point_position = [Pos[1], En[1] - ERef]
             strNote = Name + '\n' + \
                       r'$\Delta E_{rx}=$' + fNum(DE, '2f') + ' , ' + \
-                      r'$E_a=$' + fNum(Eaf, '2f') + '(' + fNum(Eab, '2f') + ') ' + 'kJ/mol\n'\
-                      r'$E_{a}(-ref)=$' + fNum(En[1] - ERef,'2f') + ' /kJ/mol'
+                      r'$E_a=$' + fNum(Eaf, '2f') + '(' + fNum(Eab, '2f') + '), '\
+                      r'$E_{a}(-ref)=$' + fNum(En[1] - ERef,'2f') + ' , kJ/mol'
         # ---- Middle Note - No TS
         elif len(En) == 2:
             xy_point_position = [(Pos[1]+Pos[0])/2, (En[1] + En[0])/2 - ERef]

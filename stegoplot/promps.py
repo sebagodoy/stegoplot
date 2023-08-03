@@ -56,11 +56,11 @@ def fStringLength(iStr, **kwargs):
 
 
 #### Number formating
-def fNum(number, formato):
+def fNum(number, formato='4f', preformato='.'):
 	# formats number acording to formato=(str)
 	# e.g.  fNum(3.1415, '2f') -> 2 decimal float
 	#		fNum(3.1415, '2e') -> 2 decimal cientific
-	tmpFormato = '{:.'+formato+'}'
+	tmpFormato = '{:'+preformato+formato+'}'
 	return tmpFormato.format(number)
 
 def fNumLength(number, **kwargs):

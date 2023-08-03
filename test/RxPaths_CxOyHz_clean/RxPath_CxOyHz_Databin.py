@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import stego.promps
-import stego.item_types as Model
+import stegoplot.promps
+import stegoplot.item_types as Model
 
-stego.promps.MayorSection('Carbon hydrogenation')
-stego.promps.MinorSection('Adding data')
+stegoplot.promps.MayorSection('Carbon hydrogenation')
+stegoplot.promps.MinorSection('Adding data')
 ########################################################################################################################
-stego.promps.CodeStatus('Adding data: Gases')
+stegoplot.promps.CodeStatus('Adding data: Gases')
 
 # Gas  ----------------------------------------------------------------
 # WARNING: CH4 freqs from McQuarrie & Simon
@@ -50,7 +50,7 @@ H2O = Model.GasItem(Name='H2O',
 
 ########################################################################################################################
 # Surface and jumps  ----------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: Clean surfaces 111s')
+stegoplot.promps.CodeStatus('Adding data: Clean surfaces 111s')
 N111s = Model.CleanSurf(Name='Ni111s',
                         G_ID=1812, E0=-298.23685034, dipolE0=0.08464490, Acc='E6G001', TS=False)
 C111s = Model.CleanSurf(Name='Co111s',
@@ -68,7 +68,7 @@ CN100 = Model.CleanSurf(Name='CN100',
                         G_ID=1783, E0=-339.92495377, dipolE0=0.01142035,  Acc='E5G005', TS=False)
 
 # Atomic species  ----------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: Atomic species')
+stegoplot.promps.CodeStatus('Adding data: Atomic species')
 
 N1s_Hf = Model.AdsItem(Name='N111s.H.f',
                        G_ID=1957, E0=-302.11567186, dipolE0=0.08806986, Acc='E6G002', TS=False,
@@ -125,7 +125,7 @@ CN100_ChN = Model.AdsItem(Name='CN100-C.hN',
 # --------------------------------------------------------------------------
 # Ni (111s) ----------------------------------------------------------------
 # --------------------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: Reactions, Ni(111s)')
+stegoplot.promps.CodeStatus('Adding data: Reactions, Ni(111s)')
 
 # .....................................
 # CHx series ..........................
@@ -439,7 +439,7 @@ N1sR16_d = Model.AdsItem(Name="N1s/R16(top)-d C.h + OH.f",
 # --------------------------------------------------------------------------
 # Co (111s) ----------------------------------------------------------------
 # --------------------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: Reactions, Co(111s)')
+stegoplot.promps.CodeStatus('Adding data: Reactions, Co(111s)')
 
 # .....................................
 # CHx series ..........................
@@ -777,7 +777,7 @@ C1sR16_d = Model.AdsItem(Name="C1s/R16-d COH.hbt -(t)-> C.h + OH.hd",
 # -----------------------------------------------------------------------------
 # Co-Ni (111s) ----------------------------------------------------------------
 # -----------------------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: Reactions, CoNi(111s)')
+stegoplot.promps.CodeStatus('Adding data: Reactions, CoNi(111s)')
 
 # .....................................
 # CHx series ..........................
@@ -1150,7 +1150,7 @@ CN1sR16C_d = Model.AdsItem(Name="CN1s/R16C COH.hNt -(C)-> C + OH",
 # ----------------------------------------------------------------------------------------------------------------------
 # Ni (100s) ------------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: Nickel 100')
+stegoplot.promps.CodeStatus('Adding data: Nickel 100')
 
 # # .....................................
 # # HCOH series .........................
@@ -1419,7 +1419,7 @@ N10R16_d = Model.AdsItem(Name='N10R16 COH.h->C.h+OH.hd',
 # ------------------------------------------------------------------------
 # Cobalt  ----------------------------------------------------------------
 # ------------------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: Cobalt 100')
+stegoplot.promps.CodeStatus('Adding data: Cobalt 100')
 
 # .....................................
 # CHx series ..........................
@@ -1686,7 +1686,7 @@ C10R16_d = Model.AdsItem(Name="C10/R16-d COH.ht -(t)-> C.h + OH.hd",
 # -------------------------------------------------------------------------------
 # Cobalt-Nickel  ----------------------------------------------------------------
 # -------------------------------------------------------------------------------
-stego.promps.CodeStatus('Adding data: CoNi 100')
+stegoplot.promps.CodeStatus('Adding data: CoNi 100')
 
 # .....................................
 # CHx series ..........................

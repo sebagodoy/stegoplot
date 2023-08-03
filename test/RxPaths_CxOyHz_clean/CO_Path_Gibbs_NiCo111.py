@@ -5,7 +5,7 @@ from matplotlib.lines import Line2D
 
 
 from RxPath_CxOyHz_Databin import *
-import stego.Plot
+import stegoplot.Plot
 
 
 
@@ -14,13 +14,13 @@ import stego.Plot
 # Creating Plot, CHx series ############################################################################################
 ########################################################################################################################
 
-stego.promps.MayorSection('Creating Plot')
+stegoplot.promps.MayorSection('Creating Plot')
 
 fig, axs = plt.subplots(1, 1, figsize=(6, 5.), dpi=90, sharey='row', sharex='all')
 plt.subplots_adjust(wspace=.0, hspace=0., left=.14, right=.98, bottom=.4, top=.94)
 
 # References
-MyRef = stego.Plot.RxRef(1.5, 0.)
+MyRef = stegoplot.Plot.RxRef(1.5, 0.)
 
 
 # Default parameters
@@ -39,7 +39,7 @@ GibbsOpts_H2 = {'T': 265 + 273.15, 'P': 0.25 * 1.}  # 25% H2
 # ----------------------------------------------------------------------------------------------------------------------
 # Cobalt-Nickel --------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------
-stego.promps.MinorSection('Adding steps to Plot: Gibbs - CoNi(111s)')
+stegoplot.promps.MinorSection('Adding steps to Plot: Gibbs - CoNi(111s)')
 
 
 
@@ -47,21 +47,24 @@ stego.promps.MinorSection('Adding steps to Plot: Gibbs - CoNi(111s)')
 # CO series ....................................................................
 # ..............................................................................
 
+
 # CO adsorption
-stego.Plot.RxStepTS([[CN111s,COg], CN1sR17bCN_i],
+stegoplot.Plot.RxStepTS([[CN111s,COg],
+                         CN1sR17bCN_i],
                  Ref=MyRef, ThermoType='Gibbs', T = 265 + 273.15, P=0.01,
                  Name='CO adsorption',
                  Hover=True, Color='k', **Main_Line_Props)
 
+
 # CN/R17bCN CO.tC -> C.hN + O.hN
-stego.Plot.RxStepTS([CN1sR17bCN_i, CN1sR17bCN_d, CN1sR17bCN_f],
+stegoplot.Plot.RxStepTS([CN1sR17bCN_i, CN1sR17bCN_d, CN1sR17bCN_f],
                    Ref=MyRef, ThermoType='Gibbs', T = 265 + 273.15,
                    Name="CO.tC -> C.hN + O.hN", PlotShape='Spline',
-                   Hover=False, Color='g', **Main_Line_Props)
+                   Hover=True, Color='g', **Main_Line_Props)
 
 # Separate/ {C.hN+O.hN} + (H2) + {} -> {C.hN (C) } + {O.hN+H.hN}
 RxProps = {'ThermoType':'Gibbs', 'T':265 + 273.15, 'P':0.25}
-stego.Plot.RxStepTS([[CN1sR17bCN_f, H2, CN111s], # initial species
+stegoplot.Plot.RxStepTS([[CN1sR17bCN_f, H2, CN111s], # initial species
                      [CN1sR21C_i, CN1sR132C_i]], # final species
                  Ref=MyRef, **RxProps, # Note the different pressure
                  Name="{C.hN+O.hN} + (H2) -> {(C)C.hN+H.hN} + {(C)O.hN+H.hN}",
@@ -217,7 +220,7 @@ stego.Plot.RxStepTS([[CN1sR17bCN_f, H2, CN111s], # initial species
 #-----------------------------------------------------------------------------------------------------------------------
 
 # Ajustes finales de plots
-stego.Plot.ActivateHover()
+stegoplot.Plot.ActivateHover()
 Ley = [Line2D([0], [0], color="k", linewidth=3, linestyle='-', alpha=0.8),
        Line2D([0], [0], color="r", linewidth=3, linestyle='-', alpha=0.8)]
 
