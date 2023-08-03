@@ -1,10 +1,9 @@
-# Database for the
+# Testing thermodynamic functons for
 
-import stego.item_types as Model
+import stegoplot.item_types as Model
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Molecular information from RPBE-DFT and reference (McQuarrie & Simon)
-import stego.parameters
 
 CH4_g = Model.GasItem(Name='CH4', E0=-24.03491563, type='Gas',
                          G_ID='CH4.gas_Local_UltraHighRes_Box15', F_ID='freqs from McQuarrie & Simon',
@@ -48,7 +47,7 @@ H2.Sel(T=300, Report=True)
 
 print('-'*20)
 
-H2.Internal(T=300, P=123, Report=True)
+H2.Internal(T=300, P=123, Report=True) # P does not matter for internal energy
 H2.E0ZPVE(Report=True)
 H2.ZPVE(Report=True)
 H2.Enthalpy(T=300, Report=True)
@@ -57,4 +56,11 @@ H2.Gibbs(T=300, P=1., Report='Detailed')
 
 print('-'*20)
 
+H2.GetThermo(ThermoType='E0', T=300, P=1, Report=True)
 H2.GetThermo(ThermoType='Etras', T=300, P=1, Report=True)
+H2.GetThermo(ThermoType='Erot', T=300, P=1, Report=True)
+H2.GetThermo(ThermoType='Evib', T=300, P=1, Report=True)
+H2.GetThermo(ThermoType='Eel', T=300, P=1, Report=True)
+H2.GetThermo(ThermoType='Gibbs', T=300, P=1, Report=True)
+
+H2.GetThermo(ThermoType='Internal', T=300, P=1, Report=True)

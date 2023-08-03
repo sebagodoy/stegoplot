@@ -10,12 +10,12 @@ def CodeErrorExit(inStr, **kwargs):
 	print(' ' * int(kwargs.get('l', 2)) + '>> ¡!¡!¡! ' + inStr, end=kwargs.get('end', '\n'))
 	raise NameError
 
-def report(Report, quantity, number, object=None):
+def report(Report, quantity, number, object=None, end='\n'):
 	if Report:
 		print('  >> ', end='')
 		if object:
 			print(object.Name, end=', ')
-		print(quantity + ' : '+str('{:.5e}'.format(number)))
+		print(quantity + ' : '+str('{:.5e}'.format(number)), end=end)
 
 def errorreport(msg):
 	print('\nError :'+ msg)

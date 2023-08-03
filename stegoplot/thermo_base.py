@@ -136,8 +136,7 @@ def Srot(Geom: "str, molec geometru",
         return kb * (log(qR) + 3. / 2.) / eV2J  # /[eV/K]
 
 
-def Svib(FreqIn: "list[floats], real freqs. [cm-1]",
-         Tin: "float, temp. [K]") -> 'float, entropy, [eV/K]':
+def Svib(FreqIn: "list[floats], real freqs. [cm-1]", Tin: "float, temp. [K]") -> 'float, entropy, [eV/K]':
     # Vibrational entropy [eV/K]
     # FreqIn = [Real fres list]	/[cm-1]
     # Tin = Temperature			/[K]

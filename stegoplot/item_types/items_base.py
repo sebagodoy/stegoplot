@@ -39,6 +39,7 @@ class SingleItem:
 		self.Notes		= kwargs.get('Notes', None)				# General notes
 
 
+
 	def __str__(self):
 		mystr = 'Item: ' + self.Name + ' , type: ' + self.type
 		if self.Notes: mystr += ' , Notes: ' + str(self.Notes)
@@ -48,7 +49,7 @@ class SingleItem:
 		return mystr 		# human readable
 
 	def __repr__(self):
-		myrepr = '||'.join([str(i)+'::'+str(self.__dict__[i])
+		myrepr = '|'.join([str(i)+':'+str(self.__dict__[i])
 							for i in list(self.__dict__.keys())
 							if not self.__dict__[i] == None])
 		return myrepr	# unique, all info
@@ -68,6 +69,7 @@ class SingleItem:
 		pass
 	def q_el(self, **kwargs):
 		pass
+	# q total is always the product
 	def q_total(self, Report=False, **kwargs):
 		out = self.q_tras(**kwargs) * self.q_rot(**kwargs) * self.q_vib(**kwargs) * self.q_el(**kwargs)
 		stegoplot.promps.report(Report, 'q(total)', out, self)
@@ -145,9 +147,9 @@ class SingleItem:
 				fun	= getattr(self, ThermoType)
 				out = fun(T=T, P=P, Report=False, **_unused)
 
-			stegoplot.promps.report(Report,ThermoType,out,self)
+			stegoplot.promps.report(Report,ThermoType,out,self, end='')
 			if Report:
-				print('T = '+str(T) + ' , P = '+str(P))
+				print(' '*5+'(T = '+str(T) + ' , P = '+str(P)+')')
 
 			return out
 		except NameError:
